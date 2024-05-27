@@ -87,20 +87,24 @@ public class Concert extends Event {
 
     @Override
     public int impact(){ // calculate the impact of the concert
-        int durationMin = duration();
-        int durationFactor = (durationMin / 30) + 1;
-        return getAttendees() * durationFactor;
+        double con_impact = 1;
+        if(duration() > (30*60)){ //duration in seconds
+            con_impact = Math.ceil((double)duration()/(30*60));
+        }
+        return (int) (con_impact * getAttendees());
     }
 
     @Override
     public String toString(){
+
         String baseString = super.toString();
-        int numTracks = setList.length;
+        // get the number of tracks from the list
+        int numTracks = setList != null ? setList.length: 0;
         int totalDuration = duration();
         int hours = totalDuration / 3600;
         int minutes = (totalDuration % 3600) / 60;
         String durationString = String.format("%02d:%02d", hours, minutes);
 
-        return String.format("%s\n%d tracks played, total duration %s", baseString, numTracks, durationString);
+        return String.format("%s\n%d tracks played, total duration %s.", baseString, numTracks, durationString);
     }
 }

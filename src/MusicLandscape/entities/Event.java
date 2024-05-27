@@ -73,9 +73,9 @@ public class Event {
     public String toString(){
         String artistStr = (artist != null && artist.toString() != null && !artist.toString().isEmpty()) ? artist.toString() : "unknown";
         String venueStr = (venue != null && venue.getName() != null && !venue.getName().isEmpty()) ? venue.getName() : "unknown";
-        String dateStr = (date != null) ? date.toString() : "unknown";  // Assuming Date class has a proper toString method
-        String descriptionStr = (description != null && !description.isEmpty()) ? description : "unknown";
-        String attendeesStr = (attendees > 0) ? String.valueOf(attendees) : "unknown";
+        String dateStr = (date != null) ? date.toString() : null;  // Assuming Date class has a proper toString method
+        String descriptionStr = (description != null && !description.isEmpty()) ? description : "";
+        String attendeesStr = (attendees > 0) ? String.valueOf(attendees) : (attendees == 0) ? String.valueOf(0) : "unknown";
 
         // Assuming impact is calculated in some way, otherwise set it to "unknown"
         String impactStr = String.valueOf(impact());
